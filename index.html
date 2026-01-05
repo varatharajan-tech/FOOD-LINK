@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLink - AI-Powered Food Donation Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-utensils"></i>
+                <span>FoodLink AI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#impact" class="nav-link">Impact</a>
+                <a href="#about" class="nav-link">About</a>
+                <button class="btn btn--primary" id="loginBtn">Login</button>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Landing Page -->
+        <section id="landingPage" class="landing-page">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Reduce Food Waste with AI-Powered Donations</h1>
+                    <p>Connect food donors with NGOs using intelligent matching, real-time tracking, and smart logistics to feed communities and save the planet.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15,847</div>
+                            <div class="stat-label">Food Donations</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">234,560</div>
+                            <div class="stat-label">People Fed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1,250</div>
+                            <div class="stat-label">Tons Saved</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3,200kg</div>
+                            <div class="stat-label">CO₂ Reduced</div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn--primary btn--lg" id="getDonorStarted">Start Donating</button>
+                        <button class="btn btn--outline btn--lg" id="getNGOStarted">Join as NGO</button>
+                        <button class="btn btn--outline btn--lg" id="getDriverStarted">Become Driver</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="donation-map">
+                        <div class="map-container">
+                            <div class="map-header">
+                                <h3><i class="fas fa-map-marker-alt"></i> Live Donations Map</h3>
+                                <div class="map-legend">
+                                    <span class="legend-item"><span class="legend-dot available"></span>Available</span>
+                                    <span class="legend-item"><span class="legend-dot claimed"></span>Claimed</span>
+                                    <span class="legend-item"><span class="legend-dot ngo"></span>NGOs</span>
+                                </div>
+                            </div>
+                            <div class="map-points">
+                                <div class="map-point available" style="top: 20%; left: 30%;"
+                                     data-tooltip="Green Leaf Restaurant - 50 servings Rice &amp; Curry">
+                                    <i class="fas fa-utensils"></i>
+                                </div>
+                                <div class="map-point claimed" style="top: 60%; left: 70%;"
+                                     data-tooltip="Fresh Mart - 25kg Vegetables (Claimed)">
+                                    <i class="fas fa-carrot"></i>
+                                </div>
+                                <div class="map-point available" style="top: 80%; left: 20%;"
+                                     data-tooltip="Sunrise Bakery - 30 Bread &amp; Pastries">
+                                    <i class="fas fa-bread-slice"></i>
+                                </div>
+                                <div class="map-point ngo" style="top: 25%; left: 45%;"
+                                     data-tooltip="Hope Foundation - Verified NGO">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="map-point ngo" style="top: 70%; left: 55%;"
+                                     data-tooltip="Care India NGO - 200 people capacity">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-time Activity Feed -->
+            <section class="activity-section">
+                <div class="container">
+                    <h2><i class="fas fa-pulse"></i> Live Activity Feed</h2>
+                    <div class="activity-feed" id="activityFeed">
+                        <div class="activity-item">
+                            <div class="activity-icon donation"><i class="fas fa-plus"></i></div>
+                            <div class="activity-content">
+                                <strong>Spice Garden Restaurant</strong> added 50 servings of Dal &amp; Rice
+                                <span class="activity-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon claimed"><i class="fas fa-check"></i></div>
+                            <div class="activity-content">
+                                <strong>Hope Foundation</strong> claimed Bread &amp; Pastries from Sunrise Bakery
+                                <span class="activity-time">5 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon completed"><i class="fas fa-truck"></i></div>
+                            <div class="activity-content">
+                                <strong>Driver #47</strong> delivered vegetables to Care India NGO
+                                <span class="activity-time">12 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Features Showcase -->
+            <section class="ai-features">
+                <div class="container">
+                    <h2><i class="fas fa-robot"></i> AI-Powered Smart Features</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-camera"></i></div>
+                            <h3>Food Recognition</h3>
+                            <p>Automatically identify food types from photos with 94.2% accuracy</p>
+                            <div class="feature-accuracy">94.2% Accuracy</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                            <h3>Expiry Prediction</h3>
+                            <p>Smart algorithms predict remaining shelf life for optimal donation timing</p>
+                            <div class="feature-accuracy">89.6% Accuracy</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-route"></i></div>
+                            <h3>Route Optimization</h3>
+                            <p>AI-powered logistics for fastest and most efficient delivery routes</p>
+                            <div class="feature-accuracy">35% Faster</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Demand Forecasting</h3>
+                            <p>Predict NGO food requirements to minimize waste and maximize impact</p>
+                            <div class="feature-accuracy">87.3% Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Authentication Modal -->
+        <div id="authModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="authTitle">Sign In to FoodLink</h2>
+                    <button class="close-btn" id="closeAuth">&times;</button>
+                </div>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Sign In</button>
+                    <button class="auth-tab" data-tab="register">Sign Up</button>
+                </div>
+                <div class="tab-content">
+                    <div id="loginTab" class="tab-pane active">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Login as</label>
+                                <select class="form-control" id="userRole" required>
+                                    <option value="">Select your role</option>
+                                    <option value="donor">Food Donor</option>
+                                    <option value="ngo">NGO</option>
+                                    <option value="driver">Delivery Driver</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
+                        </form>
+                        <div class="social-login">
+                            <p>Or sign in with</p>
+                            <div class="social-buttons">
+                                <button class="btn-social google"><i class="fab fa-google"></i></button>
+                                <button class="btn-social facebook"><i class="fab fa-facebook"></i></button>
+                                <button class="btn-social twitter"><i class="fab fa-twitter"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="registerTab" class="tab-pane">
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="registerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="registerPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Role</label>
+                                <select class="form-control" id="registerRole" required>
+                                    <option value="">Select your role</option>
+                                    <option value="donor">Food Donor</option>
+                                    <option value="ngo">NGO</option>
+                                    <option value="driver">Delivery Driver</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="enable2FA">
+                                    Enable Two-Factor Authentication
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Donor Dashboard -->
+        <section id="donorDashboard" class="dashboard hidden">
+            <div class="dashboard-header">
+                <div class="container">
+                    <div class="dashboard-nav">
+                        <h1><i class="fas fa-heart"></i> Donor Dashboard</h1>
+                        <div class="user-menu">
+                            <span class="welcome-text">Welcome, <span id="donorName">John Doe</span></span>
+                            <button class="btn btn--outline" id="logoutBtn">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="container">
+                    <div class="dashboard-grid">
+                        <!-- Quick Actions -->
+                        <div class="card quick-actions">
+                            <div class="card__body">
+                                <h3><i class="fas fa-plus"></i> Add New Donation</h3>
+                                <div class="donation-form">
+                                    <div class="upload-area" id="photoUpload">
+                                        <div class="upload-content">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Take photo or upload image</p>
+                                            <p class="upload-hint">AI will analyze your food automatically</p>
+                                        </div>
+                                        <input type="file" id="foodPhoto" accept="image/*" hidden>
+                                        <div id="photoPreview" class="hidden">
+                                            <img id="previewImage" alt="Food preview">
+                                            <div class="ai-analysis" id="aiAnalysis">
+                                                <div class="analysis-item">
+                                                    <span class="analysis-label">Detected:</span>
+                                                    <span id="detectedFood">-</span>
+                                                </div>
+                                                <div class="analysis-item">
+                                                    <span class="analysis-label">Estimated servings:</span>
+                                                    <span id="estimatedQuantity">-</span>
+                                                </div>
+                                                <div class="analysis-item">
+                                                    <span class="analysis-label">Shelf life:</span>
+                                                    <span id="shelfLife">-</span>
+                                                </div>
+                                                <div class="analysis-item">
+                                                    <span class="analysis-label">Safety score:</span>
+                                                    <span id="safetyScore" class="status status--success">94% Safe</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Food Type</label>
+                                            <input type="text" class="form-control" id="foodType" placeholder="AI will detect...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Quantity</label>
+                                            <input type="text" class="form-control" id="quantity" placeholder="e.g., 50 servings">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Pickup Location</label>
+                                            <input type="text" class="form-control" id="location" placeholder="Use current location">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Available Until</label>
+                                            <input type="datetime-local" class="form-control" id="availableUntil">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn--primary btn--full-width" id="submitDonation">
+                                        <i class="fas fa-search"></i> Find Nearby NGOs
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nearby NGOs -->
+                        <div class="card nearby-ngos">
+                            <div class="card__body">
+                                <h3><i class="fas fa-map-marker-alt"></i> Nearby NGOs (Within 10km)</h3>
+                                <div class="ngo-list" id="nearbyNGOsList">
+                                    <div class="ngo-item">
+                                        <div class="ngo-info">
+                                            <div class="ngo-name">
+                                                <strong>Hope Foundation</strong>
+                                                <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                                            </div>
+                                            <div class="ngo-details">
+                                                <span><i class="fas fa-map-marker-alt"></i> Gurgaon (2.3 km)</span>
+                                                <span><i class="fas fa-users"></i> 100 people/day</span>
+                                                <span><i class="fas fa-utensils"></i> Hot meals specialty</span>
+                                            </div>
+                                            <div class="ngo-match">Match Score: <span class="match-score high">94%</span></div>
+                                        </div>
+                                        <button class="btn btn--primary btn--sm" data-ngo="hope">Select NGO</button>
+                                    </div>
+                                    <div class="ngo-item">
+                                        <div class="ngo-info">
+                                            <div class="ngo-name">
+                                                <strong>Care India NGO</strong>
+                                                <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                                            </div>
+                                            <div class="ngo-details">
+                                                <span><i class="fas fa-map-marker-alt"></i> Bangalore (4.1 km)</span>
+                                                <span><i class="fas fa-users"></i> 200 people/day</span>
+                                                <span><i class="fas fa-box"></i> Food distribution</span>
+                                            </div>
+                                            <div class="ngo-match">Match Score: <span class="match-score medium">78%</span></div>
+                                        </div>
+                                        <button class="btn btn--outline btn--sm" data-ngo="care">Select NGO</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Donation History -->
+                        <div class="card donation-history">
+                            <div class="card__body">
+                                <h3><i class="fas fa-history"></i> Recent Donations</h3>
+                                <div class="donation-list">
+                                    <div class="donation-item completed">
+                                        <div class="donation-info">
+                                            <strong>Rice &amp; Curry</strong>
+                                            <span>50 servings • Hope Foundation</span>
+                                            <span class="donation-date">Oct 12, 2025</span>
+                                        </div>
+                                        <span class="status status--success">Delivered</span>
+                                    </div>
+                                    <div class="donation-item in-progress">
+                                        <div class="donation-info">
+                                            <strong>Fresh Vegetables</strong>
+                                            <span>25 kg • Care India NGO</span>
+                                            <span class="donation-date">Oct 13, 2025</span>
+                                        </div>
+                                        <span class="status status--warning">In Transit</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Impact Metrics -->
+                        <div class="card impact-metrics">
+                            <div class="card__body">
+                                <h3><i class="fas fa-chart-line"></i> Your Impact</h3>
+                                <div class="metrics-grid">
+                                    <div class="metric-item">
+                                        <div class="metric-value">127</div>
+                                        <div class="metric-label">Donations Made</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-value">3,850</div>
+                                        <div class="metric-label">People Fed</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-value">2.1 tons</div>
+                                        <div class="metric-label">Food Saved</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-value">450kg</div>
+                                        <div class="metric-label">CO₂ Saved</div>
+                                    </div>
+                                </div>
+                                <div class="carbon-calculator">
+                                    <h4>Carbon Footprint Calculator</h4>
+                                    <div class="calculator-visual">
+                                        <div class="carbon-bar">
+                                            <div class="carbon-saved" style="width: 78%;"></div>
+                                        </div>
+                                        <p>You've saved 78% more carbon than average donors!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NGO Dashboard -->
+        <section id="ngoDashboard" class="dashboard hidden">
+            <div class="dashboard-header">
+                <div class="container">
+                    <div class="dashboard-nav">
+                        <h1><i class="fas fa-hand-holding-heart"></i> NGO Dashboard</h1>
+                        <div class="user-menu">
+                            <span class="welcome-text">Welcome, <span id="ngoName">Hope Foundation</span></span>
+                            <button class="btn btn--outline" id="ngoLogoutBtn">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="container">
+                    <div class="dashboard-grid">
+                        <!-- Available Donations -->
+                        <div class="card available-donations">
+                            <div class="card__body">
+                                <div class="card-header-with-filters">
+                                    <h3><i class="fas fa-box-open"></i> Available Donations</h3>
+                                    <div class="donation-filters">
+                                        <select class="form-control" id="foodTypeFilter">
+                                            <option value="">All Food Types</option>
+                                            <option value="cooked">Cooked Food</option>
+                                            <option value="fresh">Fresh Produce</option>
+                                            <option value="packaged">Packaged Items</option>
+                                        </select>
+                                        <select class="form-control" id="distanceFilter">
+                                            <option value="">All Distances</option>
+                                            <option value="5">Within 5km</option>
+                                            <option value="10">Within 10km</option>
+                                            <option value="20">Within 20km</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="donation-cards" id="availableDonationsList">
+                                    <div class="donation-card available">
+                                        <div class="donation-image">
+                                            <i class="fas fa-utensils"></i>
+                                        </div>
+                                        <div class="donation-details">
+                                            <h4>Rice &amp; Curry</h4>
+                                            <p><strong>Green Leaf Restaurant</strong></p>
+                                            <div class="donation-meta">
+                                                <span><i class="fas fa-users"></i> 50 servings</span>
+                                                <span><i class="fas fa-clock"></i> 6 hours left</span>
+                                                <span><i class="fas fa-map-marker-alt"></i> 2.3 km away</span>
+                                            </div>
+                                            <div class="ai-insights">
+                                                <span class="insight-tag safety">Food Safety: 94%</span>
+                                                <span class="insight-tag match">Match: 94%</span>
+                                            </div>
+                                        </div>
+                                        <div class="donation-actions">
+                                            <button class="btn btn--primary btn--sm" data-donation="1">Claim Donation</button>
+                                            <button class="btn btn--outline btn--sm" data-donation="1">View Details</button>
+                                        </div>
+                                    </div>
+                                    <div class="donation-card available">
+                                        <div class="donation-image">
+                                            <i class="fas fa-bread-slice"></i>
+                                        </div>
+                                        <div class="donation-details">
+                                            <h4>Bread &amp; Pastries</h4>
+                                            <p><strong>Sunrise Bakery</strong></p>
+                                            <div class="donation-meta">
+                                                <span><i class="fas fa-box"></i> 30 items</span>
+                                                <span><i class="fas fa-clock"></i> 8 hours left</span>
+                                                <span><i class="fas fa-map-marker-alt"></i> 1.5 km away</span>
+                                            </div>
+                                            <div class="ai-insights">
+                                                <span class="insight-tag safety">Food Safety: 96%</span>
+                                                <span class="insight-tag match">Match: 87%</span>
+                                            </div>
+                                        </div>
+                                        <div class="donation-actions">
+                                            <button class="btn btn--primary btn--sm" data-donation="3">Claim Donation</button>
+                                            <button class="btn btn--outline btn--sm" data-donation="3">View Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Demand Forecasting -->
+                        <div class="card demand-forecast">
+                            <div class="card__body">
+                                <h3><i class="fas fa-chart-line"></i> AI Demand Forecasting</h3>
+                                <div class="forecast-chart">
+                                    <canvas id="demandChart" style="height: 200px;"></canvas>
+                                </div>
+                                <div class="forecast-insights">
+                                    <div class="insight-item">
+                                        <i class="fas fa-trending-up"></i>
+                                        <span>Peak demand expected at 7 PM today</span>
+                                    </div>
+                                    <div class="insight-item">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>Recommend claiming cooked food donations</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inventory Management -->
+                        <div class="card inventory-management">
+                            <div class="card__body">
+                                <h3><i class="fas fa-warehouse"></i> Inventory Management</h3>
+                                <div class="inventory-stats">
+                                    <div class="inventory-item">
+                                        <div class="inventory-icon cooked"><i class="fas fa-utensils"></i></div>
+                                        <div class="inventory-details">
+                                            <span class="inventory-type">Cooked Food</span>
+                                            <span class="inventory-count">120 servings</span>
+                                            <span class="inventory-status sufficient">Sufficient</span>
+                                        </div>
+                                    </div>
+                                    <div class="inventory-item">
+                                        <div class="inventory-icon fresh"><i class="fas fa-carrot"></i></div>
+                                        <div class="inventory-details">
+                                            <span class="inventory-type">Fresh Produce</span>
+                                            <span class="inventory-count">45 kg</span>
+                                            <span class="inventory-status low">Low Stock</span>
+                                        </div>
+                                    </div>
+                                    <div class="inventory-item">
+                                        <div class="inventory-icon packaged"><i class="fas fa-box"></i></div>
+                                        <div class="inventory-details">
+                                            <span class="inventory-type">Packaged Items</span>
+                                            <span class="inventory-count">78 items</span>
+                                            <span class="inventory-status sufficient">Sufficient</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Route Optimization -->
+                        <div class="card route-optimization">
+                            <div class="card__body">
+                                <h3><i class="fas fa-route"></i> Optimized Pickup Routes</h3>
+                                <div class="route-list">
+                                    <div class="route-item">
+                                        <div class="route-info">
+                                            <h4>Route A</h4>
+                                            <p>3 pickups • 8.5 km • 35 minutes</p>
+                                            <div class="route-stops">
+                                                <span class="stop">Green Leaf Restaurant</span>
+                                                <span class="stop">Sunrise Bakery</span>
+                                                <span class="stop">Fresh Corner</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn--primary btn--sm">Assign Driver</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Impact Report -->
+                        <div class="card impact-report">
+                            <div class="card__body">
+                                <h3><i class="fas fa-chart-bar"></i> Monthly Impact Report</h3>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-value">2,847</div>
+                                        <div class="stat-label">People Fed</div>
+                                        <div class="stat-change positive">+12% from last month</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-value">156</div>
+                                        <div class="stat-label">Donations Received</div>
+                                        <div class="stat-change positive">+8% from last month</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-value">3.2 tons</div>
+                                        <div class="stat-label">Food Distributed</div>
+                                        <div class="stat-change positive">+15% from last month</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Driver Dashboard -->
+        <section id="driverDashboard" class="dashboard hidden">
+            <div class="dashboard-header">
+                <div class="container">
+                    <div class="dashboard-nav">
+                        <h1><i class="fas fa-truck"></i> Driver Dashboard</h1>
+                        <div class="user-menu">
+                            <span class="welcome-text">Welcome, <span id="driverName">Mike Johnson</span></span>
+                            <button class="btn btn--outline" id="driverLogoutBtn">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="container">
+                    <div class="dashboard-grid">
+                        <!-- Active Deliveries -->
+                        <div class="card active-deliveries">
+                            <div class="card__body">
+                                <h3><i class="fas fa-truck-loading"></i> Active Deliveries</h3>
+                                <div class="delivery-list">
+                                    <div class="delivery-item active">
+                                        <div class="delivery-info">
+                                            <h4>Delivery #1247</h4>
+                                            <p><strong>Route:</strong> Green Leaf Restaurant → Hope Foundation</p>
+                                            <div class="delivery-details">
+                                                <span><i class="fas fa-utensils"></i> Rice &amp; Curry (50 servings)</span>
+                                                <span><i class="fas fa-clock"></i> ETA: 25 minutes</span>
+                                                <span><i class="fas fa-route"></i> 8.5 km remaining</span>
+                                            </div>
+                                        </div>
+                                        <div class="delivery-actions">
+                                            <button class="btn btn--primary btn--sm">Update Status</button>
+                                            <button class="btn btn--outline btn--sm">View Route</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Route Optimization -->
+                        <div class="card driver-route">
+                            <div class="card__body">
+                                <h3><i class="fas fa-route"></i> Optimized Route</h3>
+                                <div class="route-map">
+                                    <div class="route-visual">
+                                        <div class="route-step current">
+                                            <div class="step-number">1</div>
+                                            <div class="step-details">
+                                                <strong>Green Leaf Restaurant</strong>
+                                                <span>Pickup: Rice &amp; Curry</span>
+                                            </div>
+                                        </div>
+                                        <div class="route-connector"></div>
+                                        <div class="route-step">
+                                            <div class="step-number">2</div>
+                                            <div class="step-details">
+                                                <strong>Hope Foundation</strong>
+                                                <span>Delivery: 50 servings</span>
+                                            </div>
+                                        </div>
+                                        <div class="route-connector"></div>
+                                        <div class="route-step">
+                                            <div class="step-number">3</div>
+                                            <div class="step-details">
+                                                <strong>Sunrise Bakery</strong>
+                                                <span>Pickup: Bread &amp; Pastries</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="route-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Distance:</span>
+                                        <span class="stat-value">12.3 km</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Estimated Time:</span>
+                                        <span class="stat-value">45 minutes</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Fuel Cost:</span>
+                                        <span class="stat-value">₹87</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Metrics -->
+                        <div class="card driver-performance">
+                            <div class="card__body">
+                                <h3><i class="fas fa-tachometer-alt"></i> Performance Metrics</h3>
+                                <div class="performance-stats">
+                                    <div class="performance-item">
+                                        <div class="performance-value">47</div>
+                                        <div class="performance-label">Deliveries This Week</div>
+                                        <div class="performance-trend positive">+8 from last week</div>
+                                    </div>
+                                    <div class="performance-item">
+                                        <div class="performance-value">4.8</div>
+                                        <div class="performance-label">Average Rating</div>
+                                        <div class="performance-trend positive">+0.2 from last month</div>
+                                    </div>
+                                    <div class="performance-item">
+                                        <div class="performance-value">98%</div>
+                                        <div class="performance-label">On-Time Rate</div>
+                                        <div class="performance-trend positive">+3% from last month</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings Summary -->
+                        <div class="card earnings-summary">
+                            <div class="card__body">
+                                <h3><i class="fas fa-rupee-sign"></i> Earnings Summary</h3>
+                                <div class="earnings-chart">
+                                    <canvas id="earningsChart" style="height: 200px;"></canvas>
+                                </div>
+                                <div class="earnings-stats">
+                                    <div class="earnings-item">
+                                        <span class="earnings-label">This Week:</span>
+                                        <span class="earnings-value">₹2,340</span>
+                                    </div>
+                                    <div class="earnings-item">
+                                        <span class="earnings-label">This Month:</span>
+                                        <span class="earnings-value">₹8,560</span>
+                                    </div>
+                                    <div class="earnings-item">
+                                        <span class="earnings-label">Average/Delivery:</span>
+                                        <span class="earnings-value">₹185</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header" id="chatbotToggle">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+            <div class="chatbot-status online">Online</div>
+        </div>
+        <div class="chatbot-body" id="chatbotBody">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hi! I'm your FoodLink AI assistant. I can help you with donations, finding NGOs, optimizing routes, and answering any questions about food safety and logistics. How can I help you today?</p>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Ask me anything about food donation...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-trophy"></i> Community Leaderboard</h2>
+                <button class="close-btn" id="closeLeaderboard">&times;</button>
+            </div>
+            <div class="leaderboard-content">
+                <div class="leaderboard-item rank-1">
+                    <div class="rank-badge gold">1</div>
+                    <div class="contributor-info">
+                        <strong>Metro Food Court</strong>
+                        <span>127 donations • 3,850 people fed</span>
+                    </div>
+                    <div class="contributor-badge">🏆 Gold Contributor</div>
+                </div>
+                <div class="leaderboard-item rank-2">
+                    <div class="rank-badge silver">2</div>
+                    <div class="contributor-info">
+                        <strong>Green Valley Restaurant</strong>
+                        <span>98 donations • 2,940 people fed</span>
+                    </div>
+                    <div class="contributor-badge">🥈 Silver Contributor</div>
+                </div>
+                <div class="leaderboard-item rank-3">
+                    <div class="rank-badge bronze">3</div>
+                    <div class="contributor-info">
+                        <strong>Fresh Mart Chain</strong>
+                        <span>76 donations • 2,280 people fed</span>
+                    </div>
+                    <div class="contributor-badge">🥉 Bronze Contributor</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
